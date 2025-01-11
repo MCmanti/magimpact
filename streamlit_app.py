@@ -30,7 +30,7 @@ st.sidebar.header("Paramètres")
 wearpart_type = st.sidebar.selectbox("Type de Wear Part", ["Impeller", "Anvil"])
 
 # Static input obligatoire
-static_input = st.sidebar.number_input("Average Wear Part Lifetime", value=0.0)
+static_input = "Averge lifetime wear part"
 
 # Champs communs
 common_fields = {
