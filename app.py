@@ -57,7 +57,7 @@ def main():
             request_body = json.dumps({"inputs": inputs})
 
             # URL de l'API
-            api_url = "https://adb-2277836531348509.9.azuredatabricks.net/model/MagImpact_Wear_parts/Production/invocations"
+            api_url = "https://adb-4282284702815533.13.azuredatabricks.net/serving-endpoints/magimpact/invocations"
 
             # Token d'authentification
             token = "Bearer dapi17fab3e6677ec69f806531a24fafbe24-2"
