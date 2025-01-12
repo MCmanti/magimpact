@@ -50,25 +50,30 @@ common_fields = {
     "Return Percentage": st.number_input("Return Percentage", value=0.0),
 }
 
-# Champs spécifiques à chaque type de pièce
+# Listes déroulantes pour les champs spécifiques
 if wearpart_type == "Impeller":
+    design_choice = st.selectbox("Design", ["None", "Flat", "Flat - 2 layers", "Pocket"])
+    material_choice = st.selectbox("Type of Material", ["None", "GRAVEL"])
     specific_fields = {
         "Table Diameter": st.number_input("Table Diameter", value=0.0),
-        "Design_Flat": st.checkbox("Design Flat", value=False),
-        "Design_Flat - 2 layers": st.checkbox("Design Flat - 2 layers", value=False),
-        "Design_Pocket": st.checkbox("Design Pocket", value=False),
-        "Type_of_material_cat_GRAVEL": st.checkbox("Material Gravel", value=False),
+        "Design_Flat": 1 if design_choice == "Flat" else 0,
+        "Design_Flat - 2 layers": 1 if design_choice == "Flat - 2 layers" else 0,
+        "Design_Pocket": 1 if design_choice == "Pocket" else 0,
+        "Type_of_material_cat_GRAVEL": 1 if material_choice == "GRAVEL" else 0,
     }
 elif wearpart_type == "Anvil":
+    wearpart_choice = st.selectbox("Type of Wear Part", ["None", "QCA-054", "QCA-054H", "QCA-213", "QCA-218"])
+    ceramic_choice = st.selectbox("Ceramic", ["None", "Yes", "No"])
+    material_choice = st.selectbox("Type of Material", ["None", "GRAVEL", "NO_GRAVEL"])
     specific_fields = {
-        "Type of wear part_QCA-054": st.checkbox("Type QCA-054", value=False),
-        "Type of wear part_QCA-054H": st.checkbox("Type QCA-054H", value=False),
-        "Type of wear part_QCA-213": st.checkbox("Type QCA-213", value=False),
-        "Type of wear part_QCA-218": st.checkbox("Type QCA-218", value=False),
-        "Ceramic_No": st.checkbox("Ceramic No", value=False),
-        "Ceramic_Yes": st.checkbox("Ceramic Yes", value=False),
-        "Type_of_material_cat_GRAVEL": st.checkbox("Material Gravel", value=False),
-        "Type_of_material_cat_NO_GRAVEL": st.checkbox("Material No Gravel", value=False),
+        "Type of wear part_QCA-054": 1 if wearpart_choice == "QCA-054" else 0,
+        "Type of wear part_QCA-054H": 1 if wearpart_choice == "QCA-054H" else 0,
+        "Type of wear part_QCA-213": 1 if wearpart_choice == "QCA-213" else 0,
+        "Type of wear part_QCA-218": 1 if wearpart_choice == "QCA-218" else 0,
+        "Ceramic_No": 1 if ceramic_choice == "No" else 0,
+        "Ceramic_Yes": 1 if ceramic_choice == "Yes" else 0,
+        "Type_of_material_cat_GRAVEL": 1 if material_choice == "GRAVEL" else 0,
+        "Type_of_material_cat_NO_GRAVEL": 1 if material_choice == "NO_GRAVEL" else 0,
     }
 
 # Fusionner les champs
@@ -84,3 +89,4 @@ if st.button("Prédire"):
         st.success(f"Prédiction: {prediction}")
     except Exception as e:
         st.error(f"Erreur lors de la prédiction: {e}")
+
