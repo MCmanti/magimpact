@@ -60,7 +60,7 @@ def main():
             api_url = "https://adb-4282284702815533.13.azuredatabricks.net/serving-endpoints/magimpact/invocations"
 
             # Token d'authentification
-            token = "Bearer dapi17fab3e6677ec69f806531a24fafbe24-2"
+            token = "dapic18ea4067f8260fc6a71cbcc86748a0d-3"
 
             # Envoyer la requête POST
             headers = {
