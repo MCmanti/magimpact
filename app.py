@@ -86,7 +86,7 @@ def main():
             # Envoyer la requête POST
             headers = {
                 "Content-Type": "application/json",
-                "Authorization": token
+                "Authorization": f"Bearer {token}" 
             }
             response = requests.post(api_url, data=request_body, headers=headers)
 
