@@ -26,29 +26,50 @@ def main():
 
     # Entrées spécifiques
     if wearpart_type == "Impeller":
-        table_diameter = st.number_input("Table Diameter", value=0.0)
-        design_flat = st.number_input("Design Flat", value=0.0)
-        design_flat_2_layers = st.number_input("Design Flat - 2 Layers", value=0.0)
-        design_pocket = st.number_input("Design Pocket", value=0.0)
-        material_cat_gravel = st.number_input("Material Cat Gravel", value=0.0)
+        # Listes déroulantes pour Design et Material
+        design_choice = st.selectbox("Select Design", ["None", "Flat", "Flat - 2 layers", "Pocket"])
+        material_choice = st.selectbox("Select Material", ["None", "GRAVEL"])
 
-        inputs = [wearpart_type, "static_input_placeholder", tip_speed, table_diameter, flow_rate, abrasivity, density,
-                  crushability, weight, df_90, df_50, df_10, dp_90, dp_50, dp_10, return_percentage, design_flat,
-                  design_flat_2_layers, design_pocket, material_cat_gravel]
+        # Gestion des valeurs spécifiques
+        design_flat = 1 if design_choice == "Flat" else 0
+        design_flat_2_layers = 1 if design_choice == "Flat - 2 layers" else 0
+        design_pocket = 1 if design_choice == "Pocket" else 0
+        material_cat_gravel = 1 if material_choice == "GRAVEL" else 0
+
+        # Autres entrées spécifiques
+        table_diameter = st.number_input("Table Diameter", value=0.0)
+
+        inputs = [
+            wearpart_type, "static_input_placeholder", tip_speed, table_diameter, flow_rate, abrasivity, density,
+            crushability, weight, df_90, df_50, df_10, dp_90, dp_50, dp_10, return_percentage, design_flat,
+            design_flat_2_layers, design_pocket, material_cat_gravel
+        ]
 
     elif wearpart_type == "Anvil":
-        num_impellers = st.number_input("Number of Impellers", value=0.0)
-        type_wear_part_qca_054 = st.number_input("Type Wear Part QCA-054", value=0.0)
-        type_wear_part_qca_054h = st.number_input("Type Wear Part QCA-054H", value=0.0)
-        ceramic_no = st.number_input("Ceramic No", value=0.0)
-        ceramic_yes = st.number_input("Ceramic Yes", value=0.0)
-        material_cat_gravel = st.number_input("Material Cat Gravel", value=0.0)
-        material_cat_no_gravel = st.number_input("Material Cat No Gravel", value=0.0)
+        # Listes déroulantes pour Type of Wear Part, Ceramic, and Material
+        wearpart_choice = st.selectbox("Select Wear Part", ["None", "QCA-054", "QCA-054H", "QCA-213", "QCA-218"])
+        ceramic_choice = st.selectbox("Select Ceramic", ["None", "Yes", "No"])
+        material_choice = st.selectbox("Select Material", ["None", "GRAVEL", "NO_GRAVEL"])
 
-        inputs = [wearpart_type, "static_input_placeholder", tip_speed, num_impellers, flow_rate, abrasivity, density,
-                  crushability, weight, df_90, df_50, df_10, dp_90, dp_50, dp_10, return_percentage,
-                  type_wear_part_qca_054, type_wear_part_qca_054h, ceramic_no, ceramic_yes,
-                  material_cat_gravel, material_cat_no_gravel]
+        # Gestion des valeurs spécifiques
+        type_wear_part_qca_054 = 1 if wearpart_choice == "QCA-054" else 0
+        type_wear_part_qca_054h = 1 if wearpart_choice == "QCA-054H" else 0
+        type_wear_part_qca_213 = 1 if wearpart_choice == "QCA-213" else 0
+        type_wear_part_qca_218 = 1 if wearpart_choice == "QCA-218" else 0
+        ceramic_no = 1 if ceramic_choice == "No" else 0
+        ceramic_yes = 1 if ceramic_choice == "Yes" else 0
+        material_cat_gravel = 1 if material_choice == "GRAVEL" else 0
+        material_cat_no_gravel = 1 if material_choice == "NO_GRAVEL" else 0
+
+        # Autres entrées spécifiques
+        num_impellers = st.number_input("Number of Impellers", value=0.0)
+
+        inputs = [
+            wearpart_type, "static_input_placeholder", tip_speed, num_impellers, flow_rate, abrasivity, density,
+            crushability, weight, df_90, df_50, df_10, dp_90, dp_50, dp_10, return_percentage,
+            type_wear_part_qca_054, type_wear_part_qca_054h, type_wear_part_qca_213, type_wear_part_qca_218,
+            ceramic_no, ceramic_yes, material_cat_gravel, material_cat_no_gravel
+        ]
 
     # Bouton pour envoyer la requête
     if st.button("Obtenir la Prédiction"):
