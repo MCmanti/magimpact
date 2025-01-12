@@ -6,7 +6,7 @@ import requests
 import json
 
 # Intégrer le token directement dans le code
-os.environ["DATABRICKS_TOKEN"] = "dapie66246f9602999ec0960dda2b122efd3-3"  # Remplacez par votre token Databricks
+os.environ["DATABRICKS_TOKEN"] = "dapic18ea4067f8260fc6a71cbcc86748a0d-3"  # Remplacez par votre token Databricks
 
 # Fonction pour interagir avec l'endpoint
 ENDPOINT_URL = "https://adb-4282284702815533.13.azuredatabricks.net/serving-endpoints/magimpact/invocations" 
